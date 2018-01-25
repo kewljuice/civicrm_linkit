@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Extend Linkit with views links.
+ */
+
+/**
+ * Implements ctools_plugin_directory.
+ */
+function civicrm_linkit_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'linkit') {
+    return 'plugins/' . $plugin;
+  }
+  return NULL;
+}
