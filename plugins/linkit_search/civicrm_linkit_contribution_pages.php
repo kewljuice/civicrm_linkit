@@ -26,13 +26,13 @@ class CiviCRMContributionPagesLinkitPlugin extends LinkitSearchPlugin {
       $contributions = civicrm_api3('ContributionPage', 'get', [
         'sequential' => 1,
         'return' => "title",
-        'title' => $search_string,
+        'title' => ['LIKE' => '%' . $search_string . '%'],
       ]);
       // Loop all results and display to user.
       foreach ($contributions['values'] as $key => $contribution) {
         $matches[] = [
           'title' => $contribution['title'] . ' (' . $contribution['id'] . ')',
-          'path' => base_path() . 'civicrm/contribute/transact?reset=1&cid=' . $contact['id'],
+          'path' => base_path() . 'civicrm/contribute/transact?reset=1&id=' . $contribution['id'],
           'group' => t('CiviCRM Contribution Pages'),
         ];
       }
